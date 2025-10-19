@@ -3,5 +3,18 @@ services:
     name: mythos-nest
     env: python
     plan: free
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn nest_service:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: NEST_DRIVE_FOLDER_ID
+        value: ""      # <-- paste your Drive folder ID
+      - key: NEST_MAX_FILES
+        value: "50"
+      - key: NEST_TTL_SECS
+        value: "1800"
+      # Paste the full JSON text for both:
+      - key: NEST_CLIENT_SECRET_JSON
+        value: ""
+      - key: NEST_TOKEN_JSON
+        value: ""
