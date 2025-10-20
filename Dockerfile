@@ -1,29 +1,17 @@
-# Rebuild trigger 2025-10-20
-FROM python:3.11-slim
-...
-
-# Use the official Python 3.11 image
+# Use an official lightweight Python image
 FROM python:3.11-slim
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy dependency file first (so Docker caches installs)
-COPY requirements.txt .
+# Copy all project files into the container
+COPY . /app
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
-COPY . .
-
-# Expose the port Render expects
+# Expose port 8080 to Render
 EXPOSE 8080
 
-# Force rebuild 2025-10-20
-RUN echo "rebuild cache"
-
-
-# Start the app using Gunicorn
+# Run the app with Gunicorn (FastAPI via nest_service.py)
 CMD ["gunicorn", "nest_service:app", "--bind", "0.0.0.0:8080"]
-
