@@ -17,4 +17,5 @@ COPY . .
 EXPOSE 8080
 
 # Start the app using Gunicorn
-CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "nest_service:app", "--bind", "0.0.0.0:8080"]
+
