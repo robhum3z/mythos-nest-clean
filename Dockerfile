@@ -14,4 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8080
 
 # Run the app with Gunicorn (FastAPI via nest_service.py)
-CMD ["gunicorn", "nest_service:app", "--bind", "0.0.0.0:8080"]
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "nest_service:app", "--bind", "0.0.0.0:8080"]
+
