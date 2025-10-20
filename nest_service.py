@@ -185,6 +185,16 @@ def search(q: str = Query(..., min_length=2), top_k: int = 5):
     hits = [SearchHit(**h) for h in scored[: top_k]]
     return SearchResponse(hits=hits, total_docs=len(INDEX), indexed_at=INDEXED_AT or 0.0)
 
+@app.get("/debug_env")
+def debug_env():
+    import os
+    return {
+        "has_client_secret": bool(os.getenv("NEST_CLIENT_SECRET_JSON")),
+        "has_token": bool(os.getenv("NEST_TOKEN_JSON")),
+        "has_folder_id": bool(os.getenv("NEST_DRIVE_FOLDER_ID")),
+    }
+
+
 # Root convenience
 @app.get("/")
 def root():
