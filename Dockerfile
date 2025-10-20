@@ -1,3 +1,7 @@
+# Rebuild trigger 2025-10-20
+FROM python:3.11-slim
+...
+
 # Use the official Python 3.11 image
 FROM python:3.11-slim
 
