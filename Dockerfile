@@ -20,6 +20,10 @@ COPY . .
 # Expose the port Render expects
 EXPOSE 8080
 
+# Force rebuild 2025-10-20
+RUN echo "rebuild cache"
+
+
 # Start the app using Gunicorn
 CMD ["gunicorn", "nest_service:app", "--bind", "0.0.0.0:8080"]
 
